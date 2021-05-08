@@ -1,5 +1,5 @@
 import { Army } from "src/models/army.model";
-import { BattleGround } from "../interfaces/battleground.abstract";
+import { BattleGround } from "./battleground.interface";
 
 export abstract class Unit{
 
@@ -7,6 +7,8 @@ export abstract class Unit{
     health: number;
     damage: number;
     defence: number;
+    id: number;
+    isAlive: boolean = true;
 
     getType(): string{
         return this.type;
@@ -39,5 +41,7 @@ export abstract class Unit{
         return this;
     }
 
-    abstract attackEnemy(enemyArmy: Army);
+    set setId(id: number){
+        this.id = id;
+    }
 }

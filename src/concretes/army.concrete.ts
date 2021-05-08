@@ -1,9 +1,9 @@
-import { Unit } from "src/abstracts/unit.abstract";
+import { Unit } from "src/abstractions/unit.abstract";
 import { Airforce } from "src/models/airforce.model";
 import { Army } from "src/models/army.model";
 import { Artillery } from "src/models/artillery.model";
 import { Infantry } from "src/models/infantry.model";
-import { AbstractArmy } from "./armyAbstract.builder";
+import { AbstractArmy } from "../abstractions/army.abstract";
 
 export class ArmyImplementor extends AbstractArmy{
     public ArmyImplementor(army: Army){ this.army = army};
@@ -15,37 +15,30 @@ export class ArmyImplementor extends AbstractArmy{
         return this;
     }
 
-    public buildTotalValues(): AbstractArmy{
-        this.army.setTotalInfantryHealth();
-        this.army.setTotalArtilleryHealth();
-        this.army.setTotalAirforceHealth();
-        return this;
-    }
-
     public buildInfantry(size: number): AbstractArmy {
-        const units: Unit[] = [];
         for(let i = 0; i<size; i++){
-            units.push(new Infantry());
+            const unit = new Infantry();
+            unit.setId = this.army.units.length + 1;
+            this.army.units.push(unit);
         }
-        this.army.setInfantryUnits = units;
         return this;
     }
     
     public buildArtillery(size: number): AbstractArmy {
-        const units: Unit[] = [];
         for(let i = 0; i<size; i++){
-            units.push(new Artillery());
+            const unit = new Artillery();
+            unit.setId = this.army.units.length + 1;
+            this.army.units.push(unit);
         }
-        this.army.setArtilleryUnits = units;
         return this;
     }
 
     public buildAirforce(size: number): AbstractArmy {
-        const units: Unit[] = [];
         for(let i = 0; i<size; i++){
-            units.push(new Airforce());
+            const unit = new Airforce();
+            unit.setId = this.army.units.length + 1;
+            this.army.units.push(unit);
         }
-        this.army.setAirforceUnits = units;
         return this;
     }
 

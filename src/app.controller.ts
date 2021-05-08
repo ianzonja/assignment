@@ -29,9 +29,6 @@ export class AppController {
       const armyTwo = this.appService.buildArmy(armyNationalities.nationality2, army2UnitSize.infantrySize, army2UnitSize.artillerySize, army2UnitSize.airforceSize);
       //generate battleground randomly
       const battleGround = this.appService.generateBattleGround();
-      //call an event related to the battleground
-      battleGround.onBattleGroundEffect(armyOne);
-      battleGround.onBattleGroundEffect(armyTwo);
       //perform combat
       const winner = this.appService.performCombat(armyOne, armyTwo);
       console.log(winner);

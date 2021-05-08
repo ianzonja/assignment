@@ -1,19 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { BattleGround } from './interfaces/battleground.abstract';
-import { Unit } from './abstracts/unit.abstract';
-import { AbstractArmy } from './builders/army/armyAbstract.builder';
-import { ArmyImplementor } from './builders/army/armyImplementor.builder';
+import { ArmyImplementor } from './concretes/army.concrete';
 import { Army } from './models/army.model';
 import { DesertArea } from './models/desertArea.model';
 import { SnowArea } from './models/snowArea.model';
 import { VolcanoArea } from './models/volcanoArea.model';
+import { CombatImplementor } from './concretes/combat.concrete';
 
 @Injectable()
 export class AppService {
-
-  getHello(): string {
-    return 'Hello World!';
-  }
 
   generateUnitSize(armySize: number){
     const _infantrySize = Math.floor(Math.random() * armySize);
@@ -46,7 +40,11 @@ export class AppService {
 
   buildArmy(nationality: string, infantrySize: number, artillerySize: number, airforceSize: number): Army{
     const army = new ArmyImplementor();
-    return army.buildInfantry(infantrySize).buildArtillery(artillerySize).buildAirforce(airforceSize).buildNationality(nationality).buildTotalValues().build();
+    return army.buildInfantry(infantrySize)
+      .buildArtillery(artillerySize)
+      .buildAirforce(airforceSize)
+      .buildNationality(nationality)
+      .build();
   }
 
   generateBattleGround(){
@@ -63,74 +61,7 @@ export class AppService {
   }
 
   performCombat(armyOne: Army, armyTwo: Army): string{
-    do{
-      armyOne.getAirforceUnits.forEach(unit => unit.attackEnemy(armyTwo));
-      armyTwo = this.calculateAllUnitsDeaths(armyTwo);
-      armyTwo.getAirforceUnits.forEach(unit => unit.attackEnemy(armyOne));
-      armyOne = this.calculateAllUnitsDeaths(armyOne);
-      armyOne.getArtilleryUnits.forEach(unit => unit.attackEnemy(armyTwo));
-      armyTwo = this.calculateAllUnitsDeaths(armyTwo);  
-      armyTwo.getArtilleryUnits.forEach(unit => unit.attackEnemy(armyOne));
-      armyOne = this.calculateAllUnitsDeaths(armyOne);
-      armyOne.getInfantryUnits.forEach(unit => unit.attackEnemy(armyTwo));
-      armyTwo = this.calculateAllUnitsDeaths(armyTwo);
-      armyTwo.getInfantryUnits.forEach(unit => unit.attackEnemy(armyOne));
-      armyOne = this.calculateAllUnitsDeaths(armyOne);
-    }while(armyOne.getTotalArmyHealth > 0 && armyTwo.getTotalArmyHealth > 0);
-    if(armyOne.getTotalArmyHealth > 0){
-      return "THe winner is army One.";
-    }
-    else if(armyTwo.getTotalArmyHealth > 0){
-      return "The winner is army Two.";
-    }
-    else{
-      return "There is no victorious team. Both team are dead.";
-    }
-  }
-
-  calculateAllUnitsDeaths(army: Army): Army{
-    army = this.calculateDeaths(army, army.getInfantryUnits);
-    army = this.calculateDeaths(army, army.getArtilleryUnits);
-    army = this.calculateDeaths(army, army.getAirforceUnits);
-    return army;
-  }
-
-  calculateDeaths(army: Army, units: Unit[]): Army{
-    const singleUnit = units.find(unit => unit !== undefined);
-    if(singleUnit === undefined){
-      return army;
-    }
-    let totalUnitsHealth = units.map(unit => unit.getHealth()).reduce((a,b) => a + b, 0);
-    const singleUnitHealth = singleUnit.getHealth();
-    let totalCurrentUnitsHealth = 0;
-    if(singleUnit.getType() === 'Soldier'){
-      totalCurrentUnitsHealth = army.getTotalInfantryHealth;
-    }
-    else if(singleUnit.getType() === 'Artillery unit'){
-      totalCurrentUnitsHealth = army.getTotalArtilleryHealth;
-    }
-    else{
-      totalCurrentUnitsHealth = army.getTotalAirforceHealth;
-    }
-    const diff = totalUnitsHealth - totalCurrentUnitsHealth;
-    let deadUnits = 0;
-    if(diff > singleUnitHealth){
-      deadUnits = Math.floor(diff/singleUnitHealth);
-    }
-    for(let i=0; i<deadUnits; i++){
-      if(singleUnit.getType() === 'Soldier'){
-        army.infantryUnits.pop();
-        console.log('soldier died');
-      }
-      else if(singleUnit.getType() === 'Artillery unit'){
-        army.artilleryUnits.pop();
-        console.log('arttillery died');
-      }
-      else{
-        army.airforceUnits.pop();
-        console.log('airforce died');
-      }
-    }
-    return army;
+    const combat = new CombatImplementor();
+    return combat.performCombat(armyOne, armyTwo);
   }
 }
