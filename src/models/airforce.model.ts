@@ -1,8 +1,8 @@
-import { Unit } from "../abstractions/unit.abstract";
-import { Army } from "./army.model";
-export class Airforce extends Unit{
-    type: string = 'Airforce unit';
-    health: number = 150;
-    damage: number = 300;
-    defence: number = 100;
+import { Unit } from '../abstractions/unit.abstract';
+
+export class Airforce extends Unit {
+  type = 'Airforce unit';
+  health = 150;
+  damage = 300;
+  defence = 100;
 }

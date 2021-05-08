@@ -1,12 +1,12 @@
-import { BattleGround } from "src/abstractions/battleground.interface";
-import { BattleGroundEffectData } from "./battleGroudEffectData.model";
+import { BattleGround } from 'src/abstractions/battleground.interface';
+import { BattleGroundEffectData } from './battleGroudEffectData.model';
 
-export class SnowArea implements BattleGround{
-    name: string = 'Moscow';
-    country: string = 'Russia';
-    effect: string = 'Cold';
+export class SnowArea implements BattleGround {
+  name = 'Moscow';
+  country = 'Russia';
+  effect = 'Cold';
 
-    onBattleGroundEffect(){
-        return new BattleGroundEffectData(-20, 0, -20, 0, 0, -50, 30, 0, 0);
-    }
+  onBattleGroundEffect() {
+    return new BattleGroundEffectData(-20, 0, -20, 0, 0, -50, 30, 0, 0);
+  }
 }

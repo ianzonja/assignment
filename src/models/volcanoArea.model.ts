@@ -1,13 +1,12 @@
-import { BattleGround } from "src/abstractions/battleground.interface";
-import { Army } from "./army.model";
-import { BattleGroundEffectData } from "./battleGroudEffectData.model";
+import { BattleGround } from 'src/abstractions/battleground.interface';
+import { BattleGroundEffectData } from './battleGroudEffectData.model';
 
-export class VolcanoArea implements BattleGround{
-    name: string = 'Hokkaido';
-    country: string = 'Japan';
-    effect: string = 'Earthquake';
+export class VolcanoArea implements BattleGround {
+  name = 'Hokkaido';
+  country = 'Japan';
+  effect = 'Earthquake';
 
-    onBattleGroundEffect(){
-        return new BattleGroundEffectData(-5, 0, -30, 0, -50, 0, 25, 0, 0);
-    }
+  onBattleGroundEffect() {
+    return new BattleGroundEffectData(-5, 0, -30, 0, -50, 0, 25, 0, 0);
+  }
 }

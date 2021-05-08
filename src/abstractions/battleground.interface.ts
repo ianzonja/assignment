@@ -1,9 +1,8 @@
-import { Army } from "src/models/army.model";
-import { BattleGroundEffectData } from "src/models/battleGroudEffectData.model";
+import { BattleGroundEffectData } from 'src/models/battleGroudEffectData.model';
 
 export interface BattleGround {
-    name: string;
-    country: string;
-    effect: string;
-    onBattleGroundEffect(): BattleGroundEffectData;
+  name: string;
+  country: string;
+  effect: string;
+  onBattleGroundEffect(): BattleGroundEffectData;
 }
