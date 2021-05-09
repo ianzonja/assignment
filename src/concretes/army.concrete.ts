@@ -10,19 +10,19 @@ export class ArmyImplementor extends AbstractArmy {
       const battleGroundEffectData = battleGround.onBattleGroundEffect();
       this.army.units.forEach(unit => {
           if(unit.getType() === 'Soldier'){
-              unit.addDamage(battleGroundEffectData.addInfantryDamage);
-              unit.addDefence(battleGroundEffectData.addInfantryDefence);
-              unit.addHealth(battleGroundEffectData.addInfantryHealth);
+              unit.addDamage(battleGroundEffectData.addInfantryDamage)
+                .addDefence(battleGroundEffectData.addInfantryDefence)
+                .addHealth(battleGroundEffectData.addInfantryHealth);
           }
           else if(unit.getType() === 'Artillery unit'){
-              unit.addDamage(battleGroundEffectData.addArtilleryDamage);
-              unit.addDefence(battleGroundEffectData.addArtilleryDefence);
-              unit.addHealth(battleGroundEffectData.addArtilleryHealth);
+              unit.addDamage(battleGroundEffectData.addArtilleryDamage)
+                .addDefence(battleGroundEffectData.addArtilleryDefence)
+                .addHealth(battleGroundEffectData.addArtilleryHealth);
           }
           else{
-              unit.addDamage(battleGroundEffectData.addAirforceDamage);
-              unit.addDefence(battleGroundEffectData.addAirforceDefence);
-              unit.addHealth(battleGroundEffectData.addAirforceHealth);
+              unit.addDamage(battleGroundEffectData.addAirforceDamage)
+                .addDefence(battleGroundEffectData.addAirforceDefence)
+                .addHealth(battleGroundEffectData.addAirforceHealth);
           }
       });
       return this;
