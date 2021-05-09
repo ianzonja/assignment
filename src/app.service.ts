@@ -35,7 +35,7 @@ export class AppService {
     };
   }
 
-  getNationalityName(id: number) {
+  getNationalityName(id: number): string {
     if (id === 1) {
       return 'Egyptian';
     } else if (id === 2) {
@@ -62,7 +62,7 @@ export class AppService {
       .build();
   }
 
-  generateBattleGround() {
+  generateBattleGround(): BattleGround {
     const randomBattleGround = Math.floor(Math.random() * 3) + 1;
     if (randomBattleGround === 1) {
       return new DesertArea();
