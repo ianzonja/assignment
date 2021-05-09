@@ -1,4 +1,4 @@
-<img href="https://github.com/ianzonja/assignment/blob/main/src_diagram.png"/>
+![alt text](https://github.com/ianzonja/assignment/blob/main/src_diagram.png?raw=true)
 UZORCI DIZAJNA:
 Factory method -> Za kreiranje battlegrounda
 Builder -> Za kreiranje army objekata
