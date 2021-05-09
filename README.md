@@ -1,3 +1,9 @@
+<img href="https://github.com/ianzonja/assignment/blob/main/src_diagram.png"/>
+UZORCI DIZAJNA:
+Factory method -> Za kreiranje battlegrounda
+Builder -> Za kreiranje army objekata
+Strategy -> Za dodavanje statova unitima ovisno o efektu battlegrounda
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
